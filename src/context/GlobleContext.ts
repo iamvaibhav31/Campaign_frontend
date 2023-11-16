@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 interface initialState {
     status: "idle" | "loading" | "successful" | "failed";
     error: null | string;
-    throughToasts: (type: "success" | "error" | "warning", error?: string, message?: string) => void
+    throughToasts: (type: "success" | "error" | "warning", message: string) => void
     setError: React.Dispatch<React.SetStateAction<string>>;
     setStatus: React.Dispatch<React.SetStateAction<'idle' | 'loading' | 'successful' | 'failed'>>
 }
@@ -15,8 +15,8 @@ function GlobleContextStore() {
 
     console.log("GlobleContextStore", error)
 
-    const throughToasts = (type: "success" | "error" | "warning", error?: string, message?: string) => {
-        toast[type](type === "success" ? message : error)
+    const throughToasts = (type: "success" | "error" | "warning", message: string) => {
+        toast[type](message)
     
     }
 
@@ -36,7 +36,7 @@ const AuthContext = createContext<initialState>({
     error: null,
     setError: () => { },
     setStatus: () => { },
-    throughToasts: (type: "success" | "error" | "warning", error?: string, message?: string) => { }
+    throughToasts: (type: "success" | "error" | "warning", message: string) => { }
 });
 
 
