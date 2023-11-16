@@ -1,18 +1,12 @@
-import { platformValues, platformImg } from './Constants'
+import {  platformImg } from './Constants'
 
-type PlatformValueKey = keyof typeof platformValues;
+
 type PlatformImgKey = keyof typeof platformImg;
 
-const getPlatformValue = (value: PlatformValueKey): string => {
-    return platformValues[value];
-};
-
-const getPlatformImg = (value: PlatformValueKey): string => {
-    const name : PlatformImgKey = platformValues[value] as PlatformImgKey
+const getPlatformImg = (name: PlatformImgKey): string => {
     return platformImg[name];
 };
 
 export {
-    getPlatformValue,
     getPlatformImg
 };
