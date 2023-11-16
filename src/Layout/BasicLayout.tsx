@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import NavBar from '../components/atom/NavBar'
 import SideBar from '../components/atom/SideBar'
 // import Loader from '../components/atom/Loader'
-import useGloble from '../hooks/useGloble'
+// import useGloble from '../hooks/useGloble'
 // import { getProductsError, getProductsStatus } from '../store/slice/productSlice'
 // import { getLocationError, getLocationStatus } from '../store/slice/LocationsSlice'
 // import { getCampaignError, getCampaignStatus } from '../store/slice/campaignSlice'
@@ -21,11 +21,11 @@ const BasicLayout = ({ children }: Props) => {
     // const campaignStatus = useAppSelector(getCampaignStatus)
     // const Error = useAppSelector(getProductsError) || useAppSelector(getLocationError) || useAppSelector(getCampaignError) || error
     const handleCloseSB = () => {
-        toggleSB.current.classList.add('-translate-x-full');
+        toggleSB.current?.classList.add('-translate-x-full');
     }
 
     const handleOpenSB = () => {
-        toggleSB.current.classList.remove('-translate-x-full');
+        toggleSB.current?.classList.remove('-translate-x-full');
     }
 
     // useEffect(() => {

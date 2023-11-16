@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import PlatformCard from '../atom/PlatformCard'
 import { platforms } from '../../utills/Constants'
 import { useAppDispatch } from '../../hooks/useDispatch'
