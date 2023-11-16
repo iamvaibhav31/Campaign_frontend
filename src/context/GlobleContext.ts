@@ -1,12 +1,12 @@
-import { createContext, useState } from "react";
+import { createContext, Dispatch, SetStateAction, useState } from "react";
 import { toast } from 'react-toastify';
 
-interface initialState {
+export interface GlobleContextStatetype {
     status: "idle" | "loading" | "successful" | "failed";
     error: null | string;
     throughToasts: (type: "success" | "error" | "warning", message: string) => void
-    setError: React.Dispatch<React.SetStateAction<string>>;
-    setStatus: React.Dispatch<React.SetStateAction<'idle' | 'loading' | 'successful' | 'failed'>>
+    setError: Dispatch<SetStateAction<string | null>>;
+    setStatus: Dispatch<SetStateAction<'idle' | 'loading' | 'successful' | 'failed'>>
 }
 
 function GlobleContextStore() {
@@ -17,7 +17,6 @@ function GlobleContextStore() {
 
     const throughToasts = (type: "success" | "error" | "warning", message: string) => {
         toast[type](message)
-    
     }
 
     return {
@@ -29,16 +28,7 @@ function GlobleContextStore() {
     }
 }
 
-
-
-const AuthContext = createContext<initialState>({
-    status: "idle",
-    error: null,
-    setError: () => { },
-    setStatus: () => { },
-    throughToasts: (type: "success" | "error" | "warning", message: string) => { }
-});
-
+const AuthContext = createContext<GlobleContextStatetype | undefined>(undefined);
 
 export default AuthContext;
 

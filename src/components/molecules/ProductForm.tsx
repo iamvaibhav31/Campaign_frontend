@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useAppDispatch } from '../../hooks/useDispatch'
 import { useAppSelector } from '../../hooks/useSelector'
 import ProductCard from '../atom/ProductCard'
-import { selectProduct , getAllProducts , getProductsError  ,getProductsStatus} from '../../store/slice/productSlice'
+import { selectProduct , getAllProducts , getProductsError } from '../../store/slice/productSlice'
 import { setProductID  } from '../../store/slice/campaignSlice'
 // import useCampaignValidation from '../../validator/useCampaignValidation'
 // import { getCampaignDetails } from '../../store/slice/campaignSlice'
@@ -14,7 +14,7 @@ const ProductForm = () => {
   // const campaignDetails = useAppSelector(getCampaignDetails);
   // const canProceed = useCampaignValidation('PLAYFORM' , campaignDetails);
   const Error = useAppSelector(getProductsError)
-  const Status = useAppSelector(getProductsStatus)
+  // const Status = useAppSelector(getProductsStatus)
   
   // useEffect(() => {
   //   console.log('PRODUCT :-',canProceed)
