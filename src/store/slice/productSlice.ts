@@ -31,7 +31,7 @@ const ProductSlice = createSlice({
             state.status = 'loading'
             console.log(action.payload)
         })
-        builder.addCase(getProducts.fulfilled, (state, action) => {
+        builder.addCase(getProducts.fulfilled, (state, action:any) => {
             if (action?.payload?.response?.status !== 404) {
                 const productData = action?.payload?.data?.products?.map((ele: any) => {
                     ele.selected = false

@@ -6,6 +6,7 @@ import logoIcon from '../../assets/svg/logo/zocketLogo.svg'
 import campaignIcon from '../../assets/svg/sidebar/campaingn.svg'
 import closeIcon from '../../assets/svg/close.svg'
 import { Link } from "react-router-dom";
+import React from "react";
 const SideBar = forwardRef<HTMLElement, any>((props, ref) => {
   return (
     <aside

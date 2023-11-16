@@ -1,4 +1,6 @@
-const StartIcon = (props) => (
+import React from "react";
+
+const StartIcon = () => (
   <svg
     width="28"
     height="28"
@@ -17,7 +19,7 @@ const StartIcon = (props) => (
   </svg>
 );
 
-const ProductIcon = (props) => (
+const ProductIcon = () => (
   <svg
     width="28"
     height="28"

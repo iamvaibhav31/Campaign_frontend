@@ -1,11 +1,11 @@
-import React, { useState , useEffect} from 'react'
+import React, { useState } from 'react'
 import ProgressStep from '../components/atom/ProgressStep';
 import PlatformForm from '../components/molecules/PlatformForm';
 import ProductForm from '../components/molecules/ProductForm';
 import Info1Form from '../components/molecules/Info1Form';
 import Info2Form from '../components/molecules/Info2Form';
 import { createCampaigns } from '../store/actions/CampaignAction';
-import { getCampaignDetails ,getAllCampaigns } from '../store/slice/campaignSlice';
+import { getCampaignDetails } from '../store/slice/campaignSlice';
 import { useAppDispatch } from '../hooks/useDispatch';
 import { useAppSelector } from '../hooks/useSelector';
 import { useNavigate } from 'react-router-dom';

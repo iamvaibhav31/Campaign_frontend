@@ -1,10 +1,10 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import CampaignInfoCard from '../atom/CampaignInfoCard'
 import { campaignFormData } from '../../utills/Constants'
 import { useAppDispatch } from '../../hooks/useDispatch'
-import { setName, setDesc , getCampaignDetails } from '../../store/slice/campaignSlice'
+import { setName, setDesc  } from '../../store/slice/campaignSlice'
 // import useCampaignValidation from '../../validator/useCampaignValidation'
-import { useAppSelector } from '../../hooks/useSelector'
+// import { useAppSelector } from '../../hooks/useSelector'
 const Info2Form = () => {
   const [campaignData, setCampaignData] = useState<any[]>(campaignFormData)
   // const campaignDetails = useAppSelector(getCampaignDetails);

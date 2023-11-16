@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { searchLocation } from '../actions/LocationsAction'
 import { RootState } from '../Index';
-import useGloble from "../../hooks/useGloble";
+// import useGloble from "../../hooks/useGloble";
 
 const initialState: { Data: any[], status: 'idle' | 'loading' | 'successful' | 'failed', error: null | string } = {
      Data: [],

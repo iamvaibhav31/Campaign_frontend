@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import Slider from '../atom/Slider';
 import ToggleBtn from '../atom/ToggleBtn';
@@ -6,7 +6,7 @@ import DDSelector from '../atom/LocationSelector';
 import { getLatLong } from '../../utills/Location';
 import { useAppDispatch } from '../../hooks/useDispatch'
 // import { useAppSelector } from '../../hooks/useSelector';
-import { setLocation, setRadius, setBudget, setDateRange, getCampaignDetails } from '../../store/slice/campaignSlice';
+import { setLocation, setRadius, setBudget, setDateRange } from '../../store/slice/campaignSlice';
 import { DateRange } from '@mui/x-date-pickers-pro';
 // import useCampaignValidation from '../../validator/useCampaignValidation';
 import useGloble from '../../hooks/useGloble';

@@ -9,29 +9,29 @@ const ToggleBtn = ({ label, btnLables, defaultValue, onChange }: { label: string
         if (defaultValue) {
             setToggleButton(defaultValue)
             if (defaultValue === btnLables[0]) {
-                btn1.current.classList.add("bg-blue-900", "text-white")
+                btn1.current?.classList.add("bg-blue-900", "text-white")
             } else if (defaultValue === btnLables[1]) {
-                btn2.current.classList.add("bg-blue-900", "text-white")
+                btn2.current?.classList.add("bg-blue-900", "text-white")
             }
         } else {
             console.log('ToggleBtn-no default value')
             setToggleButton(btnLables[0])
-            btn1.current.classList.add("bg-blue-900", "text-white")
+            btn1.current?.classList.add("bg-blue-900", "text-white")
         }
     }, [])
 
     useEffect(() => {
 
         if (toggleButton === btnLables[0]) {
-            btn1.current.classList.toggle("bg-blue-900", true);
-            btn1.current.classList.toggle("text-white", true);
-            btn2.current.classList.toggle("bg-blue-900", false);
-            btn2.current.classList.toggle("text-white", false);
+            btn1.current?.classList.toggle("bg-blue-900", true);
+            btn1.current?.classList.toggle("text-white", true);
+            btn2.current?.classList.toggle("bg-blue-900", false);
+            btn2.current?.classList.toggle("text-white", false);
         } else {
-            btn1.current.classList.toggle("bg-blue-900", false);
-            btn1.current.classList.toggle("text-white", false);
-            btn2.current.classList.toggle("bg-blue-900", true);
-            btn2.current.classList.toggle("text-white", true);
+            btn1.current?.classList.toggle("bg-blue-900", false);
+            btn1.current?.classList.toggle("text-white", false);
+            btn2.current?.classList.toggle("bg-blue-900", true);
+            btn2.current?.classList.toggle("text-white", true);
         }
 
         onChange(toggleButton)

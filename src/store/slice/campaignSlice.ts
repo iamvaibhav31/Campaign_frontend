@@ -72,7 +72,7 @@ const CampaignSlice = createSlice({
             state.status = 'loading'
             console.log(action.payload)
         })
-        builder.addCase(getCampaigns.fulfilled, (state, action) => {
+        builder.addCase(getCampaigns.fulfilled, (state, action:any) => {
             console.log("getCampaigns.fulfilled" , action?.payload.code === "ERR_NETWORK")
             if (action?.payload?.response?.status !== 404 && action?.payload.code === "ERR_NETWORK") {
                 state.Data = action?.payload?.data?.campaigns 
