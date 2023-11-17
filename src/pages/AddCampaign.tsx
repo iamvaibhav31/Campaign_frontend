@@ -1,20 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
 import ProgressStep from '../components/atom/ProgressStep';
 import PlatformForm from '../components/molecules/PlatformForm';
 import ProductForm from '../components/molecules/ProductForm';
 import Info1Form from '../components/molecules/Info1Form';
 import Info2Form from '../components/molecules/Info2Form';
 import { createCampaigns } from '../store/actions/CampaignAction';
-import { getCampaignDetails } from '../store/slice/campaignSlice';
+import { getCampaignDetails  , getCampaignError} from '../store/slice/campaignSlice';
 import { useAppDispatch } from '../hooks/useDispatch';
 import { useAppSelector } from '../hooks/useSelector';
 import { useNavigate } from 'react-router-dom';
 import useCampaignValidation from '../validator/useCampaignValidation';
 import useGloble from '../hooks/useGloble';
+import { getProductsError } from '../store/slice/productSlice';
+import { getLocationError } from '../store/slice/LocationsSlice';
 const AddCampaign = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate();
     const {throughToasts} = useGloble()
+    const producterror = useAppSelector(getProductsError) 
+    const locationerror = useAppSelector(getLocationError) 
+    const campaignerror  = useAppSelector(getCampaignError)
    
     const campaignDetails = useAppSelector(getCampaignDetails)
     const [activeStep, setActiveStep] = useState<number>(0)
@@ -41,6 +46,19 @@ const AddCampaign = () => {
             throughToasts('warning' , "please check you select or fill all the fields")
         }
     };
+
+    useEffect(() => {
+      if(producterror){
+        throughToasts('error',producterror)
+      }  
+      if(locationerror){
+        throughToasts('error',locationerror)
+      }  
+      if(campaignerror){
+        throughToasts('error',campaignerror)
+      }  
+    })
+    
 
    
     return (

@@ -30,6 +30,9 @@ const CampaignList = ({ campaigns }: { campaigns: any[] }) => {
                         Location
                     </th>
                     <th scope="col" className="px-4">
+                        Platform
+                    </th>
+                    <th scope="col" className="px-4">
                         Status
                     </th>
                     <th scope="col" className="px-4">
@@ -38,7 +41,7 @@ const CampaignList = ({ campaigns }: { campaigns: any[] }) => {
                 </tr>
             </thead>
             <tbody>
-                {campaigns?.map((ele) => <CampaignCard id={ele._id} name={ele.name} budget={ele.budget} clicks={ele.noofclicks} range={ele.range} status={ele.status} createdat={ele.createdAt} />)}
+                {campaigns?.map((ele) => <CampaignCard id={ele._id} name={ele.name} platform={ele.platform} budget={ele.budget} clicks={ele.noofclicks} range={ele.range} status={ele.status} createdat={ele.createdAt} />)}
             </tbody>
         </table>
     )

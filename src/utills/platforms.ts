@@ -1,8 +1,6 @@
 import {  platformImg } from './Constants'
 
-type PlatformImgKey = keyof typeof platformImg;
-
-const getPlatformImg = (name: PlatformImgKey): string => {
+const getPlatformImg = (name: string): string => {
     return platformImg[name];
 };
 

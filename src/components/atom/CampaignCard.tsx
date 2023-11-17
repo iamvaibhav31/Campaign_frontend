@@ -3,8 +3,11 @@ import editIcon from '../../assets/svg/edit.svg'
 import deleteIcon from '../../assets/svg/delete.svg'
 import carImg from '../../assets/carimg.webp'
 import { priceFormate, dateFormate } from '../../utills/Formate'
-import { deleteCampaigns } from '../../store/actions/CampaignAction'
+import { deleteCampaigns, updateStatus } from '../../store/actions/CampaignAction'
 import { useAppDispatch } from '../../hooks/useDispatch'
+import { getPlatformImg } from '../../utills/platforms'
+import Switch from '@mui/material/Switch';
+
 
 interface campaigncardpropstype {
     id: string;
@@ -13,17 +16,23 @@ interface campaigncardpropstype {
     clicks: number;
     status: boolean;
     createdat: string;
+    platform: string;
     range: {
         start: string;
         end: string;
     };
 }
 
-
-const CampaignCard = ({id, name, budget, clicks, range, status, createdat }: campaigncardpropstype) => {
+const CampaignCard = ({ id, name, budget, clicks, platform, range, status, createdat }: campaigncardpropstype) => {
     const dispatch = useAppDispatch()
+    const [checked, setChecked] = React.useState(status);
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setChecked(event.target.checked);
+        dispatch(updateStatus({ id: id, status: event.target.checked }))
+    };
     return (
-        <tr>
+        <tr className=''>
             <td className="w-4 p-4">
                 <div className="flex items-center">
                     <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
@@ -31,12 +40,11 @@ const CampaignCard = ({id, name, budget, clicks, range, status, createdat }: cam
                 </div>
             </td>
             <th scope="row" className="w-4 p-4  font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {/* peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full */}
-                {/* on / off */}
-                <label className="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" value="" className="sr-only peer" />
-                    <div className={`w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 ${status ? "peer-checked:after:translate-x-full" : "rtl:peer-checked:after:-translate-x-full"} peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700  peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600`}></div>
-                </label>
+                <Switch
+                    checked={checked}
+                    onChange={handleChange}
+                    inputProps={{ 'aria-label': 'controlled' }}
+                />
             </th>
             <td className="p-2 sm:p-4">
                 <div className='flex flex-col lg:flex-row gap-2 items-center'>
@@ -59,15 +67,18 @@ const CampaignCard = ({id, name, budget, clicks, range, status, createdat }: cam
             <td className="p-2 sm:p-4 text-center">
                 Chennai
             </td>
+            <td className="p-2 sm:p-4">
+                <img src={getPlatformImg(platform)} width="24" height="24" alt={platform} />
+            </td>
             <td className="p-2 sm:p-4 ">
-                <div className={`px-2 p-1 ${status ? 'bg-green-200 text-green-600' : 'bg-red-200 text-red-600'} rounded-lg flex justify-center item-center`}>
-                    {status ? 'Live' : 'Pause'}
+                <div className={`px-2 p-1 ${checked ? 'bg-green-200 text-green-600' : 'bg-red-200 text-red-600'} rounded-lg flex justify-center item-center`}>
+                    {checked ? 'Live' : 'Pause'}
                 </div>
             </td>
             <td className="p-2 sm:p-4">
                 <div className='flex items-center gap-2 justify-evenly'>
-                    <button  className="font-medium"><img src={editIcon} width="24" height="24" alt="edit" /></button>
-                    <button onClick={()=> dispatch(deleteCampaigns(id))}  className="font-medium"><img src={deleteIcon} width="24" height="24" alt="delete" /></button>
+                    <button className="font-medium"><img src={editIcon} width="24" height="24" alt="edit" /></button>
+                    <button onClick={() => dispatch(deleteCampaigns(id))} className="font-medium"><img src={deleteIcon} width="24" height="24" alt="delete" /></button>
                 </div>
             </td>
         </tr>

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getAllCampaigns, createCampaign, deleteCampaign } from "../../Api";
+import { getAllCampaigns, createCampaign, deleteCampaign   , updateCampaignStatus} from "../../Api";
 import { CampaignDetailsType } from "../slice/campaignSlice";
 
 const getCampaigns = createAsyncThunk(
@@ -41,4 +41,17 @@ const deleteCampaigns = createAsyncThunk(
     }
 );
 
-export { getCampaigns, createCampaigns , deleteCampaigns };
+const updateStatus = createAsyncThunk(
+    "Campaign/updateCampaignStatus",
+    async ({id , status}:{id:string , status:boolean}) => {
+        console.log("Campaign/deleteCampaigns",id)
+        try {
+            const res = await updateCampaignStatus(id , status);
+            return res;
+        } catch (error) {
+            return error
+        }
+    }
+);
+
+export { getCampaigns, createCampaigns , deleteCampaigns , updateStatus};

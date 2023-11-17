@@ -1,4 +1,4 @@
-import { getCampaigns, createCampaigns, deleteCampaigns } from '../actions/CampaignAction';
+import { getCampaigns, createCampaigns, deleteCampaigns, updateStatus } from '../actions/CampaignAction';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../Index';
 
@@ -69,54 +69,69 @@ const CampaignSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(getCampaigns.pending, (state, action) => {
+            console.log("getCampaigns.pending", action.payload)
             state.status = 'loading'
-            console.log(action.payload)
         })
-        builder.addCase(getCampaigns.fulfilled, (state, action:any) => {
-            console.log("getCampaigns.fulfilled" , action?.payload.code === "ERR_NETWORK")
-            if (action?.payload?.response?.status !== 404 && action?.payload.code === "ERR_NETWORK") {
-                state.Data = action?.payload?.data?.campaigns 
-            }else{
-                state.Data =[]
+        builder.addCase(getCampaigns.fulfilled, (state, action: any) => {
+            console.log("getCampaigns.fulfilled", action?.payload)
+            if (action?.payload?.response?.status !== 404 && action?.payload.code !== "ERR_NETWORK") {
+                state.Data = action?.payload?.data?.campaigns
+                state.status = 'successful'
+            } else {
+                state.Data = []
                 state.error = action?.payload?.response?.statusText || "Unable to fetch the Campaign"
                 state.status = 'failed'
             }
         })
         builder.addCase(getCampaigns.rejected, (state, action) => {
-            console.log("getCampaigns.rejected" , action)
-
+            console.log("getCampaigns.rejected", action)
             state.error = action?.error?.message || "Unable to fetch the Campaign"
             state.status = 'failed'
         })
         //createCampaigns
         builder.addCase(createCampaigns.pending, (state, action) => {
-            state.status = 'loading'
             console.log(action.payload)
+            state.status = 'loading'
         })
         builder.addCase(createCampaigns.fulfilled, (state, action) => {
-            console.log("createCampaigns.fulfilled" , action.payload)
-            state.status= "successful"
+            console.log("createCampaigns.fulfilled", action.payload)
+            state.status = "successful"
         })
         builder.addCase(createCampaigns.rejected, (state, action) => {
             state.error = action?.error?.message || "Unable to create campaign"
             state.status = 'failed'
         })
+
         // deleteCampaigns
         builder.addCase(deleteCampaigns.pending, (state, action) => {
-            state.status = 'loading'
             console.log(action.payload)
+            state.status = 'loading'
         })
         builder.addCase(deleteCampaigns.fulfilled, (state, action) => {
-            console.log("deleteCampaigns.fulfilled" , action.payload)
-            state.status= "successful"
+            console.log("deleteCampaigns.fulfilled", action.payload)
+            state.status = "successful"
         })
         builder.addCase(deleteCampaigns.rejected, (state, action) => {
             state.error = action?.error?.message || "Unable to delete campaign"
             state.status = 'failed'
         })
+
+        // updateStatus
+        builder.addCase(updateStatus.pending, (state, action) => {
+            console.log(action.payload)
+            state.status = 'loading'
+        })
+        builder.addCase(updateStatus.fulfilled, (state, action) => {
+            console.log("updateStatus.fulfilled", action.payload)
+            state.status = "successful"
+        })
+        builder.addCase(updateStatus.rejected, (state, action) => {
+            state.error = action?.error?.message || "Unable to delete campaign"
+            state.status = 'failed'
+        })
     },
 })
-
+// updateStatus
 
 export const { setName, setDesc, setProductID, setBudget, setplatform, setLocation, setDateRange, setRadius } = CampaignSlice.actions
 
