@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import customerIcon from '../../assets/svg/sidebar/Customers.svg'
+import customerIcon from '../../assets/svg/sidebar/customers.svg'
 import productsIcon from '../../assets/svg/sidebar/products.svg'
 import homeIcon from '../../assets/svg/sidebar/home.svg'
 import logoIcon from '../../assets/svg/logo/zocketLogo.svg'
