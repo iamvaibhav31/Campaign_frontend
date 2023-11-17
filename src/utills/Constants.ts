@@ -79,7 +79,7 @@ const platforms = [
     }
 ];
 
-const platformImg = {
+const platformImg: { [key: string]: string } = {
     "FB": FBIcon,
     "Google": GIcon,
     "Instagram": IIcon,
